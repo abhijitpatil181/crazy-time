@@ -5,6 +5,8 @@
   border-radius: 16px;
   background: linear-gradient(to bottom, #121212, #0e1111, #121212);
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .divider-line {

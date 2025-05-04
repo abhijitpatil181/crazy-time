@@ -131,7 +131,7 @@ class RouletteTable extends React.Component<
 
     return (
       <React.Fragment>
-        <div className="d-flex flex-row align-items-start roulette-table">
+        <div className="d-flex flex-row align-items-center roulette-table hidden">
           <div className="align-self-start">
             <ul className="list-unstyled pt-6">
               {this.state.columnLeft.map((num, index, arr) => (

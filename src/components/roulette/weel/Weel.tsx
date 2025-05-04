@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
 import { Button, Image } from "react-bootstrap";
 import "./Weel.css";
-import { options } from "../../../mock/option.mock";
+import { options } from "../../../mock";
 import { WeelState } from "../../../types/weel.type";
 
 // Define interfaces for props and state

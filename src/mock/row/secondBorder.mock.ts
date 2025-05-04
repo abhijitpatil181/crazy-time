@@ -1,4 +1,4 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
 
 export const secondBorder: Row[] = [
   {
@@ -73,3 +73,5 @@ export const secondBorder: Row[] = [
     visible: false,
   },
 ];
+
+export default secondBorder;

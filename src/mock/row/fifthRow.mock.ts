@@ -1,6 +1,8 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
 
-export const fifthRow: Row[] = [
+;
+
+const fifthRow: Row[] = [
   {
     n: "1 to 18",
     className: "blues cella-fifth chip-container-cella-fifth",
@@ -37,3 +39,4 @@ export const fifthRow: Row[] = [
     visible: false,
   },
 ];
+export default fifthRow;

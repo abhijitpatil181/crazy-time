@@ -1,4 +1,5 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
+
 export const fourthRow: Row[] = [
   {
     n: "1st 12",
@@ -18,3 +19,5 @@ export const fourthRow: Row[] = [
     visible: false,
   },
 ];
+
+export default fourthRow;

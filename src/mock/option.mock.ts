@@ -1,6 +1,6 @@
 import { Option } from "../types/option.type";
 
-export const options: Option[]= [
+const options: Option[] = [
   { number: "0", color: "green" },
   { number: "28", color: "black" },
   { number: "9", color: "red" },
@@ -40,3 +40,5 @@ export const options: Option[]= [
   { number: "14", color: "red" },
   { number: "2", color: "black" },
 ];
+
+export default options;

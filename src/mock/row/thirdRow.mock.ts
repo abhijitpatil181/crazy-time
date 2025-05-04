@@ -1,4 +1,4 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
 
 export const thirdRow: Row[] = [
   { n: "1", className: "red cella chip-container-cella", visible: false },
@@ -23,5 +23,7 @@ export const thirdRow: Row[] = [
   { n: ["28", "31"], className: "bordo chip-container-bordo", visible: false },
   { n: "31", className: "black cella chip-container-cella", visible: false },
   { n: ["31", "34"], className: "bordo chip-container-bordo", visible: false },
-  { n: "34", className: "red cella chip-container-cella", visible: false }
+  { n: "34", className: "red cella chip-container-cella", visible: false },
 ];
+
+export default thirdRow;

@@ -1,0 +1,88 @@
+.table {
+  margin: 10px auto;
+  padding: 20px;
+  border: 2px solid #dcb44a;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, #121212, #0e1111, #121212);
+  width: 100%;
+}
+
+.divider-line {
+  position: relative;
+  border-top-width: 1px;
+
+  margin: 0 0 20px 0;
+  text-align: center;
+  left: auto;
+  right: auto;
+
+}
+
+.divider-line-center {
+  text-align: center;
+}
+
+.divider-line-linear-gradient {
+  height: 1px;
+  border: none;
+  background-image: linear-gradient(to right, transparent, #b0762b, #dcb44a, transparent);
+}
+
+.diamond-line-icon {
+  position: absolute;
+  top: -11px;
+  width: 34px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: left;
+  font-style: normal;
+  color: #db1f27;
+  background-color: #8B0000;
+}
+
+.divider-line-center .diamond-line-icon {
+  left: auto;
+  right: auto;
+  margin-left: -1.42857rem;
+}
+
+.bg-verdict {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid #F2F098;
+  max-width: 700px !important;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  min-height: 100px;
+  color: #F2F098;
+}
+
+/* Global styles */
+
+.text-small {
+  font-size: 90%;
+}
+
+.pt-6 {
+  padding-top: 6px;
+}
+
+.bg-red {
+  background-color: #8B0000;
+}
+
+.text-light-gold {
+  color: cornsilk;
+}
+
+.text-gold {
+  color: #f1c876;
+}
+
+.coins-col {
+  background: url("images/button-bg.png") center center no-repeat;
+  background-size: contain;
+  min-height: 150px;
+}

@@ -1,3 +1,5 @@
+import { Row } from "./row.type";
+
 // Table item definition for roulette cells
 export interface TableItem {
   visible: boolean;
@@ -81,14 +83,14 @@ export interface RouletteState {
   message: string; // message
   extArr: string[]; // little trick: pushing number here if user win, so if it's empty, user loose
   // JSON rows
-  firstRow: TableItem[];
-  firstBorder: TableItem[];
-  secondRow: TableItem[];
-  secondBorder: TableItem[];
-  thirdRow: TableItem[];
-  thirdBorder: TableItem[];
-  fourthRow: TableItem[];
-  fifthRow: TableItem[];
-  columnLeft: TableItem[];
-  columnRight: TableItem[];
+  firstRow: Row[];
+  firstBorder: Row[];
+  secondRow: Row[];
+  secondBorder: Row[];
+  thirdRow: Row[];
+  thirdBorder: Row[];
+  fourthRow: Row[];
+  fifthRow: Row[];
+  columnLeft: Row[];
+  columnRight: Row[];
 }

@@ -15,6 +15,8 @@ import { Container, Row, Col } from "react-bootstrap";
 // import fifthRow from "./roulette_components/table/rows/FifthRow.json";
 // import columnLeft from "./roulette_components/table/rows/ColumnLeft.json";
 // import columnRight from "./roulette_components/table/rows/ColumnRight.json";
+
+
 import {
   APIData,
   RouletteProps,
@@ -22,6 +24,7 @@ import {
   RouletteTableProps,
   TableItem,
 } from "../../types/roulette.type";
+import { columnLeft, columnRight, fifthRow, firstBorder, firstRow, fourthRow, secondBorder, secondRow, thirdBorder, thirdRow } from "../../mock";
 
 class Roulette extends React.Component<RouletteProps, RouletteState> {
   // Declaring combinations as class properties
@@ -244,16 +247,16 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       message: "Put your bets and spin the weel!", // message
       extArr: [], // little trick: pushing number here if user win, so if it's empty, user loose
       // JSON rows with TypeScript casting
-      firstRow: firstRow as TableItem[],
-      firstBorder: firstBorder as TableItem[],
-      secondRow: secondRow as TableItem[],
-      secondBorder: secondBorder as TableItem[],
-      thirdRow: thirdRow as TableItem[],
-      thirdBorder: thirdBorder as TableItem[],
-      fourthRow: fourthRow as TableItem[],
-      fifthRow: fifthRow as TableItem[],
-      columnLeft: columnLeft as TableItem[],
-      columnRight: columnRight as TableItem[],
+      firstRow: firstRow,
+      firstBorder: firstBorder,
+      secondRow: secondRow,
+      secondBorder: secondBorder,
+      thirdRow: thirdRow ,
+      thirdBorder: thirdBorder,
+      fourthRow: fourthRow ,
+      fifthRow: fifthRow ,
+      columnLeft: columnLeft ,
+      columnRight: columnRight ,
     };
   }
 

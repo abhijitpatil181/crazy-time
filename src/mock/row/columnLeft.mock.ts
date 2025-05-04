@@ -1,6 +1,6 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
 
-export const columnLeft: Row[] = [
+const columnLeft: Row[] = [
   {
     n: "00",
     className: "greens cella-z-top chip-container-cella-z",
@@ -13,3 +13,5 @@ export const columnLeft: Row[] = [
     visible: false,
   },
 ];
+
+export default columnLeft;

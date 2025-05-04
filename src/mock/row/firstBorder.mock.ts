@@ -1,6 +1,6 @@
-import { Row } from "../types/row.type";
+import { Row } from "../../types/row.type";
 
-export const firstBorder: Row[] = [
+const firstBorder: Row[] = [
   {
     n: ["3", "2"],
     className: "bordo-h chip-container-bordo-h",
@@ -73,3 +73,5 @@ export const firstBorder: Row[] = [
     visible: false,
   },
 ];
+
+export default firstBorder;

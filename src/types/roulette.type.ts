@@ -1,14 +1,14 @@
 import { Row } from "./row.type";
 
 // Table item definition for roulette cells
-export interface TableItem {
-  visible: boolean;
-  name: string;
-  id: string;
-  color?: string;
-  position?: string;
-  [key: string]: any; // For any additional properties
-}
+// export interface Row {
+//   visible: boolean;
+//   name: string;
+//   id: string;
+//   color?: string;
+//   position?: string;
+//   [key: string]: any; // For any additional properties
+// }
 
 // User type
 export interface User {
@@ -40,22 +40,22 @@ export interface APIData {
 
 export interface RouletteTableProps {
   // Rows
-  firstRow: TableItem[];
-  firstBorder: TableItem[];
-  secondRow: TableItem[];
-  secondBorder: TableItem[];
-  thirdRow: TableItem[];
-  thirdBorder: TableItem[];
-  fourthRow: TableItem[];
-  fifthRow: TableItem[];
-  columnLeft: TableItem[];
-  columnRight: TableItem[];
-  
+  firstRow: Row[];
+  firstBorder: Row[];
+  secondRow: Row[];
+  secondBorder: Row[];
+  thirdRow: Row[];
+  thirdBorder: Row[];
+  fourthRow: Row[];
+  fifthRow: Row[];
+  columnLeft: Row[];
+  columnRight: Row[];
+
   // Functions
-  updateRow: (row: string, val: TableItem[]) => void;
+  updateRow: (row: string, val: Row[]) => void;
   updateArr: (arr: any[]) => void;
   updateCoins: (coins: number) => void;
-  
+
   // State props
   num: string;
   arr: any[];

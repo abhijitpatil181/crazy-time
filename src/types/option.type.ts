@@ -1,4 +1,5 @@
 export type Option = {
-  number: string;
-  color: string;
+  blockId: string;
+  blockDisplayValue: string;
+  blockColor: string;
 };

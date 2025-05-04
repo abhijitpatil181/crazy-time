@@ -5,26 +5,26 @@ import Weel from "./weel/Weel";
 import { Container, Row, Col } from "react-bootstrap";
 // import { GiDiamonds } from "react-icons/gi";
 // import API from "../../../utils/API";
-// import firstRow from "./roulette_components/table/rows/FirstRow.json";
-// import firstBorder from "./roulette_components/table/rows/FirstBorder.json";
-// import secondRow from "./roulette_components/table/rows/SecondRow.json";
-// import secondBorder from "./roulette_components/table/rows/SecondBorder.json";
-// import thirdRow from "./roulette_components/table/rows/ThirdRow.json";
-// import thirdBorder from "./roulette_components/table/rows/ThirdBorder.json";
-// import fourthRow from "./roulette_components/table/rows/FourthRow.json";
-// import fifthRow from "./roulette_components/table/rows/FifthRow.json";
-// import columnLeft from "./roulette_components/table/rows/ColumnLeft.json";
-// import columnRight from "./roulette_components/table/rows/ColumnRight.json";
-
 
 import {
   APIData,
   RouletteProps,
   RouletteState,
   RouletteTableProps,
-  TableItem,
 } from "../../types/roulette.type";
-import { columnLeft, columnRight, fifthRow, firstBorder, firstRow, fourthRow, secondBorder, secondRow, thirdBorder, thirdRow } from "../../mock";
+import {
+  columnLeft,
+  columnRight,
+  fifthRow,
+  firstBorder,
+  firstRow,
+  fourthRow,
+  secondBorder,
+  secondRow,
+  thirdBorder,
+  thirdRow,
+} from "../../mock";
+import RouletteTable from "./table/RouletteTable";
 
 class Roulette extends React.Component<RouletteProps, RouletteState> {
   // Declaring combinations as class properties
@@ -251,12 +251,12 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       firstBorder: firstBorder,
       secondRow: secondRow,
       secondBorder: secondBorder,
-      thirdRow: thirdRow ,
+      thirdRow: thirdRow,
       thirdBorder: thirdBorder,
-      fourthRow: fourthRow ,
-      fifthRow: fifthRow ,
-      columnLeft: columnLeft ,
-      columnRight: columnRight ,
+      fourthRow: fourthRow,
+      fifthRow: fifthRow,
+      columnLeft: columnLeft,
+      columnRight: columnRight,
     };
   }
 
@@ -527,7 +527,10 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
 
   // gonna pass this function as props to my Table.js, so i can update it back
   updateRow = (row: string, val: TableItem[]): void => {
-    this.setState({ [row]: val } as unknown as Pick<RouletteState, keyof RouletteState>);
+    this.setState({ [row]: val } as unknown as Pick<
+      RouletteState,
+      keyof RouletteState
+    >);
   };
 
   render(): JSX.Element {
@@ -536,7 +539,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
         <Row>
           <Container fluid className="table">
             <Row className="align-items-center">
-              {/* <Col className="mx-5">
+              <Col className="mx-5">
                 <RouletteTable
                   //ROWS//
                   firstRow={this.state.firstRow}
@@ -560,7 +563,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   chip={this.state.chip}
                   spinning={this.state.spinning}
                 />
-                <Row className="bg-red bg-verdict align-items-center">
+                {/* <Row className="bg-red bg-verdict align-items-center">
                   <Col
                     md={4}
                     className="d-flex align-items-center coins-col justify-content-center"
@@ -572,9 +575,8 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                       <h6 className="text-uppercase">{this.state.message}</h6>
                     </div>
                     <div className="text-center">
-                 
                       <div className="divider-line divider-line-center divider-line-linear-gradient w-100 mx-auto my-4">
-                        <GiDiamonds className="diamond-line-icon" />
+                     
                       </div>
                       <ul className="list-inline">
                         <li className="list-inline-item">
@@ -589,8 +591,8 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                       </ul>
                     </div>
                   </Col>
-                </Row>
-              </Col> */}
+                </Row> */}
+              </Col>
               <Col className="align-self-center">
                 <Weel
                   isSpinning={this.isSpinning}

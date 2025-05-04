@@ -60,7 +60,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
       ctx.font = "14px Helvetica, Arial";
       for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
-        ctx.fillStyle = options[i].color;
+        ctx.fillStyle = options[i].blockColor;
         ctx.beginPath();
         ctx.arc(baseSize, baseSize, outsideRadius, angle, angle + arc, false);
         ctx.arc(baseSize, baseSize, insideRadius, angle + arc, angle, true);
@@ -72,7 +72,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
           baseSize + Math.sin(angle + arc / 2) * textRadius
         );
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = options[i].number;
+        const text = options[i].blockDisplayValue;
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }

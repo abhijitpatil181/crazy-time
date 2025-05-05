@@ -106,7 +106,7 @@
   width: 6px;
   max-width: 6px;
   height: 35px;
-  /* font-size: 1px; */
+  font-size: 1px;
   color: green;
   cursor: pointer;
 }

@@ -132,7 +132,7 @@ class RouletteTable extends React.Component<
     return (
       <React.Fragment>
         <div className="d-flex flex-row align-items-center roulette-table hidden">
-          <div className="align-self-start">
+          {/* <div className="align-self-start">
             <ul className="list-unstyled pt-6">
               {this.state.columnLeft.map((num, index, arr) => (
                 <li
@@ -152,7 +152,7 @@ class RouletteTable extends React.Component<
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
           <div className="align-self-start">
             <div className="table-divider"></div>
             {/* First row */}
@@ -171,7 +171,7 @@ class RouletteTable extends React.Component<
               ))}
             </ul>
             {/* Between first and second rows borders */}
-            <ul className="d-flex list-unstyled">
+            {/* <ul className="d-flex list-unstyled">
               {this.state.firstBorder.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-fb`}
@@ -186,9 +186,12 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} />
                 </button>
               ))}
-            </ul>
+            </ul> */}
             {/* Second row */}
-            <ul className="d-flex list-unstyled">
+            <ul
+              className="d-flex list-unstyled"
+              style={{ paddingLeft: "110px" }}
+            >
               {this.state.secondRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-sr`}
@@ -203,7 +206,7 @@ class RouletteTable extends React.Component<
               ))}
             </ul>
             {/* Between second and third rows borders */}
-            <ul className="d-flex list-unstyled">
+            {/* <ul className="d-flex list-unstyled">
               {this.state.secondBorder.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-sb`}
@@ -218,9 +221,9 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} />
                 </button>
               ))}
-            </ul>
+            </ul> */}
             {/* Third row */}
-            <ul className="d-flex list-unstyled">
+            {/* <ul className="d-flex list-unstyled">
               {this.state.thirdRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-tr`}
@@ -233,9 +236,9 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} />
                 </button>
               ))}
-            </ul>
+            </ul> */}
             {/* Between third rows borders */}
-            <ul className="d-flex ">
+            {/* <ul className="d-flex ">
               {this.state.thirdBorder.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-tb`}
@@ -250,7 +253,7 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} />
                 </button>
               ))}
-            </ul>
+            </ul> */}
             {/* Fourth row */}
             <ul className="d-flex list-unstyled">
               {this.state.fourthRow.map((num, index) => (
@@ -284,7 +287,7 @@ class RouletteTable extends React.Component<
             </ul> */}
             <div className="table-divider"></div>
           </div>
-          <div className="align-self-start">
+          {/* <div className="align-self-start">
             <div className="table-divider"></div>
             <ul className="list-unstyled">
               {this.state.columnRight.map((num, index) => (
@@ -303,7 +306,7 @@ class RouletteTable extends React.Component<
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
       </React.Fragment>
     );

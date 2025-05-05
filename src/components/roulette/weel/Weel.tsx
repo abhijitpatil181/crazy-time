@@ -1,6 +1,6 @@
 import React, { JSX } from "react";
 import { Button } from "react-bootstrap";
-import "./Weel.css";
+import "./weel.css";
 import { options } from "../../../mock";
 import { WeelState } from "../../../types/weel.type";
 

@@ -1,5 +1,5 @@
 import React, { JSX } from "react";
-import { Button, Image } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "./Weel.css";
 import { options } from "../../../mock";
 import { WeelState } from "../../../types/weel.type";

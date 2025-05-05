@@ -16,7 +16,7 @@ export default class Spinner extends Component<SpinnerProps, SpinnerState> {
     });
   }
 
-  componentDidUpdate(prevProps: SpinnerProps, prevState: SpinnerState): void {
+  componentDidUpdate(_prevProps: SpinnerProps, prevState: SpinnerState): void {
     const { spinning } = this.state;
 
     if (spinning && spinning !== prevState.spinning) {

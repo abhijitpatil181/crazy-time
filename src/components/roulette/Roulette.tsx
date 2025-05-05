@@ -535,7 +535,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
         <Row>
           <Container fluid className="table">
             <Row className="align-items-center justify-content-center">
-              <Col className="mx-5">
+            <Col className="mx-5">
                 <RouletteTable
                   //ROWS//
                   firstRow={this.state.firstRow}

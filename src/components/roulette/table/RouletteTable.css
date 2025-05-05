@@ -30,8 +30,8 @@
 }
 
 .cella {
-  width: 35px !important;
-  height: 35px !important;
+  width: 57px !important;
+  height: 45px !important;
   font-size: 12px;
   color: white;
   text-align: center;
@@ -73,7 +73,7 @@
 
 .cella-fourth {
   width:50%;
-  height: 50%;
+  height: 35px;
   font-size: 12px;
   color: white;
   text-align: center;
@@ -97,7 +97,7 @@
 }
 
 .chip-container-cella-fourth {
-  line-height: 35px;
+  line-height: 35px ;
   text-align: center;
 }
 

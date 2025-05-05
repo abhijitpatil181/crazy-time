@@ -156,7 +156,7 @@ class RouletteTable extends React.Component<
           <div className="align-self-start">
             <div className="table-divider"></div>
             {/* First row */}
-            <ul className="d-flex list-unstyled">
+            <ul className="d-flex list-unstyled" style={{ paddingLeft: "0px" }}>
               {this.state.firstRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-fr`}
@@ -189,8 +189,9 @@ class RouletteTable extends React.Component<
             </ul> */}
             {/* Second row */}
             <ul
-              className="d-flex list-unstyled"
-              style={{ paddingLeft: "110px" }}
+              className="d-flex justify-content-center list-unstyled"
+              // style={{ paddingLeft: "110px" }}
+              style={{ paddingLeft: "114px" }}
             >
               {this.state.secondRow.map((num, index) => (
                 <button
@@ -255,14 +256,17 @@ class RouletteTable extends React.Component<
               ))}
             </ul> */}
             {/* Fourth row */}
-            <ul className="d-flex list-unstyled">
+            <ul
+              className="d-flex list-unstyled "
+              style={{ paddingLeft: "0px" }}
+            >
               {this.state.fourthRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-for`}
                   className={num.className}
                   value={num.n}
                   onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
+                  disabled={this.state.disabled || num.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
                   <Chip id={num.n} active={num.visible} />

@@ -266,7 +266,7 @@ class RouletteTable extends React.Component<
                   className={num.className}
                   value={num.n}
                   onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled || num.disabled}
+                  disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
                   <Chip id={num.n} active={num.visible} />

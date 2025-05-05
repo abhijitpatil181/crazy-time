@@ -130,7 +130,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
     const arcd = (arc * 180) / Math.PI;
     const index = Math.floor((360 - (degrees % 360)) / arcd);
     ctx.save();
-    const text = options[index].number;
+    const text = options[index].blockDisplayValue;
     this.setState({ text });
     ctx.restore();
     this.props.updateNum(this.state.text);

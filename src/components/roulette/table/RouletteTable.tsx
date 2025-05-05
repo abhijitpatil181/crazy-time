@@ -14,7 +14,7 @@ interface RouletteTableState {
   thirdRow: Row[];
   thirdBorder: Row[];
   fourthRow: Row[];
-  fifthRow: Row[];
+  // fifthRow: Row[];
   columnLeft: Row[];
   columnRight: Row[];
   /* END JSONS ROWS */
@@ -37,7 +37,7 @@ class RouletteTable extends React.Component<
       thirdRow: this.props.thirdRow,
       thirdBorder: this.props.thirdBorder,
       fourthRow: this.props.fourthRow,
-      fifthRow: this.props.fifthRow,
+      // fifthRow: this.props.fifthRow,
       columnLeft: this.props.columnLeft,
       columnRight: this.props.columnRight,
       disabled: false,
@@ -235,7 +235,7 @@ class RouletteTable extends React.Component<
               ))}
             </ul>
             {/* Between third rows borders */}
-            <ul className="d-flex list-unstyled">
+            <ul className="d-flex ">
               {this.state.thirdBorder.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-tb`}
@@ -268,7 +268,7 @@ class RouletteTable extends React.Component<
             </ul>
             <div className="table-divider"></div>
             {/* Fifth row */}
-            <ul className="d-flex list-unstyled">
+            {/* <ul className="d-flex list-unstyled">
               {this.state.fifthRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-fif`}
@@ -281,7 +281,7 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} />
                 </button>
               ))}
-            </ul>
+            </ul> */}
             <div className="table-divider"></div>
           </div>
           <div className="align-self-start">

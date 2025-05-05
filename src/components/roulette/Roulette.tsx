@@ -549,7 +549,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   thirdRow={this.state.thirdRow}
                   thirdBorder={this.state.thirdBorder}
                   fourthRow={this.state.fourthRow}
-                  fifthRow={this.state.fifthRow}
+                  // fifthRow={this.state.fifthRow}
                   columnLeft={this.state.columnLeft}
                   columnRight={this.state.columnRight}
                   //END ROWS//

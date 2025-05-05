@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
 import "./RouletteTable.css";
 import Chip from "../chips/Chip";
-import { Overlay, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
+// import { Overlay, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import { RouletteTableProps } from "../../../types/roulette.type";
 import { Row } from "../../../types/row.type";
 
@@ -262,7 +262,7 @@ class RouletteTable extends React.Component<
                   className={num.className}
                   value={num.n}
                   onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled || num.disabled}
+                  disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
                   <Chip id={num.n} active={num.visible} />

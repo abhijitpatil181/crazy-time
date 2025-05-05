@@ -6,12 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 // import { GiDiamonds } from "react-icons/gi";
 // import API from "../../../utils/API";
 
-import {
-  APIData,
-  RouletteProps,
-  RouletteState,
-  RouletteTableProps,
-} from "../../types/roulette.type";
+import { RouletteProps, RouletteState } from "../../types/roulette.type";
 import {
   columnLeft,
   columnRight,
@@ -25,6 +20,7 @@ import {
   thirdRow,
 } from "../../mock";
 import RouletteTable from "./table/RouletteTable";
+import { Row as RowType } from "../../types/row.type";
 
 class Roulette extends React.Component<RouletteProps, RouletteState> {
   // Declaring combinations as class properties
@@ -526,7 +522,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
   };
 
   // gonna pass this function as props to my Table.js, so i can update it back
-  updateRow = (row: string, val: TableItem[]): void => {
+  updateRow = (row: string, val: RowType[]): void => {
     this.setState({ [row]: val } as unknown as Pick<
       RouletteState,
       keyof RouletteState
@@ -549,7 +545,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   thirdRow={this.state.thirdRow}
                   thirdBorder={this.state.thirdBorder}
                   fourthRow={this.state.fourthRow}
-                  // fifthRow={this.state.fifthRow}
+                  fifthRow={this.state.fifthRow}
                   columnLeft={this.state.columnLeft}
                   columnRight={this.state.columnRight}
                   //END ROWS//

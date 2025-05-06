@@ -534,8 +534,15 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       <React.Fragment>
         <Row>
           <Container fluid className="table">
-            <Row className="align-items-center justify-content-center">
-            <Col className="mx-5">
+            <Row className="align-items-center justify-content-center ">
+              <Col className="align-self-center mx-2">
+                <Weel
+                  isSpinning={this.isSpinning}
+                  updateNum={this.updateNum}
+                  arr={this.state.arr}
+                />
+              </Col>
+              <Col className="mt-5">
                 <RouletteTable
                   //ROWS//
                   firstRow={this.state.firstRow}
@@ -588,13 +595,6 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                     </div>
                   </Col>
                 </Row> */}
-              </Col>
-              <Col className="align-self-center">
-                <Weel
-                  isSpinning={this.isSpinning}
-                  updateNum={this.updateNum}
-                  arr={this.state.arr}
-                />
               </Col>
             </Row>
           </Container>

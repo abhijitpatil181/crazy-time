@@ -1,16 +1,16 @@
 .chip {
   margin: auto;
-  font-size: 10px;
+  font-size: 0.6rem;
   font-weight: bold;
   text-align: center;
-  line-height: 20px;
+  line-height: 1.2rem;
   color: #ffffff;
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 20px;
-  height: 20px;
+  width: 1.2rem;
+  height: 1.2rem;
   background: #555;
   border-radius: 50%;
   border: 1px dashed white;

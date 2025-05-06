@@ -8,6 +8,10 @@ body {
   /* background: #000 url("/resources/bg1.jpg") no-repeat top center; */
   background-size: cover;
   color: #f1c876;
+  margin: 0;
+  padding: 0;
+  width:100%;
+  height: 100%;
 
 }
 

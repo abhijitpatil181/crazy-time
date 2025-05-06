@@ -542,7 +542,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   arr={this.state.arr}
                 />
               </Col>
-              <Col className="mt-5">
+                <Col className="mt-5" style={{ marginTop: "1.25rem" }}>
                 <RouletteTable
                   //ROWS//
                   firstRow={this.state.firstRow}
@@ -568,34 +568,34 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                 />
                 {/* <Row className="bg-red bg-verdict align-items-center">
                   <Col
-                    md={4}
-                    className="d-flex align-items-center coins-col justify-content-center"
+                  md={4}
+                  className="d-flex align-items-center coins-col justify-content-center"
                   >
-                    <h4 className="m-0">${this.state.coins}</h4>
+                  <h4 className="m-0">${this.state.coins}</h4>
                   </Col>
                   <Col md={8}>
-                    <div className="text-center">
-                      <h6 className="text-uppercase">{this.state.message}</h6>
+                  <div className="text-center">
+                    <h6 className="text-uppercase">{this.state.message}</h6>
+                  </div>
+                  <div className="text-center">
+                    <div className="divider-line divider-line-center divider-line-linear-gradient w-100 mx-auto my-4">
+                   
                     </div>
-                    <div className="text-center">
-                      <div className="divider-line divider-line-center divider-line-linear-gradient w-100 mx-auto my-4">
-                     
-                      </div>
-                      <ul className="list-inline">
-                        <li className="list-inline-item">
-                          Spins: {this.state.count}
-                        </li>
-                        <li className="list-inline-item">
-                          Wins: {this.state.wins}
-                        </li>
-                        <li className="list-inline-item">
-                          Losses: {this.state.losses}
-                        </li>
-                      </ul>
-                    </div>
+                    <ul className="list-inline">
+                    <li className="list-inline-item">
+                      Spins: {this.state.count}
+                    </li>
+                    <li className="list-inline-item">
+                      Wins: {this.state.wins}
+                    </li>
+                    <li className="list-inline-item">
+                      Losses: {this.state.losses}
+                    </li>
+                    </ul>
+                  </div>
                   </Col>
                 </Row> */}
-              </Col>
+                </Col>
             </Row>
           </Container>
           <Container fluid className="table">

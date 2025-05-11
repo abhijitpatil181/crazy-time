@@ -191,7 +191,7 @@ class RouletteTable extends React.Component<
             <ul
               className="d-flex justify-content-center list-unstyled"
               // style={{ paddingLeft: "110px" }}
-              style={{ paddingLeft: "114px" }}
+              style={{ paddingLeft: "90px" }}
             >
               {this.state.secondRow.map((num, index) => (
                 <button

@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { Blocks } from "../store/slices/rouletten.slice";
 
 export const getBlocks = async () => {
   const config: AxiosRequestConfig = {

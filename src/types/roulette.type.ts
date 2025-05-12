@@ -94,3 +94,9 @@ export interface RouletteState {
   columnLeft: Row[];
   columnRight: Row[];
 }
+
+export interface Coin {
+  coinId: string;
+  coinValue: string;
+  coinColor: string;
+}

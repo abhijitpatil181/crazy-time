@@ -1,11 +1,15 @@
 import React, { JSX } from "react";
 import { Button } from "react-bootstrap";
 import "./weel.css";
-import { options } from "../../../mock";
 import { WeelState } from "../../../types/weel.type";
+import { RootState } from "../../../store/store";
+import { connect } from "react-redux";
+
+import { Option } from "../../../types/option.type";
 
 // Define interfaces for props and state
 interface WeelProps {
+  blocks: Option[];
   updateNum: (num: string) => void;
   isSpinning: (spinning: boolean) => void;
   arr: any[]; // Type can be more specific based on actual usage
@@ -23,7 +27,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
       spinTimeTotal: Math.random() * 3 + 4 * 1000,
       startAngle: 0,
       spinTime: 0,
-      arc: Math.PI / (options.length / 2),
+      arc: Math.PI / (props.blocks.length / 2),
       text: "",
     };
     this.spinTimer = null;
@@ -58,9 +62,9 @@ class Weel extends React.Component<WeelProps, WeelState> {
       if (!ctx) return;
 
       ctx.font = "14px Helvetica, Arial";
-      for (let i = 0; i < options.length; i++) {
+      for (let i = 0; i < this.props.blocks?.length; i++) {
         const angle = startAngle + i * arc;
-        ctx.fillStyle = options[i].blockColor;
+        ctx.fillStyle = this.props.blocks[i].blockColor;
         ctx.beginPath();
         ctx.arc(baseSize, baseSize, outsideRadius, angle, angle + arc, false);
         ctx.arc(baseSize, baseSize, insideRadius, angle + arc, angle, true);
@@ -72,7 +76,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
           baseSize + Math.sin(angle + arc / 2) * textRadius
         );
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = options[i].blockDisplayValue;
+        const text = this.props.blocks[i].blockDisplayValue;
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }
@@ -130,7 +134,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
     const arcd = (arc * 180) / Math.PI;
     const index = Math.floor((360 - (degrees % 360)) / arcd);
     ctx.save();
-    const text = options[index].blockDisplayValue;
+    const text = this.props.blocks[index].blockDisplayValue;
     this.setState({ text });
     ctx.restore();
     this.props.updateNum(this.state.text);
@@ -217,4 +221,12 @@ class Weel extends React.Component<WeelProps, WeelState> {
   }
 }
 
-export default Weel;
+// export default Weel;
+
+// Map Redux state to component props
+const mapStateToProps = (state: RootState) => ({
+  blocks: state.blocks.blocks, // Map blocks.blocks from Redux state to blocks prop
+});
+
+// Connect component to Redux
+export default connect(mapStateToProps)(Weel);

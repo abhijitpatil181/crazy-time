@@ -1,6 +1,8 @@
 import Roulette from "../../components/roulette/Roulette";
+import useBlocks from "../../hooks/useBlocks";
 
 const CrazyTime = () => {
+  useBlocks();
   return (
     <>
       <Roulette

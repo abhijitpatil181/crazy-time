@@ -7,13 +7,13 @@ const useCoins = () => {
   const dispatch = useAppDispatch();
 
   const { data: coinsData } = useQuery({
-    queryKey: ["roulette", "blocks"],
+    queryKey: ["roulette", "coins"],
     queryFn: async () => {
       try {
         const result = await getCoins();
-        console.log("Blocks data:", result.data);
+        console.log("Blocks data:", result?.data?.coins);
         if (result.status === 200) {
-          dispatch(setCoins(result?.data));
+          dispatch(setCoins(result?.data?.coins));
         }
         return result;
       } catch (error) {

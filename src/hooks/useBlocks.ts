@@ -13,10 +13,9 @@ const useBlocks = () => {
         const result = await getBlocks();
         console.log("Blocks data:", result.data);
         if (result.status === 200) {
-          dispatch(setBlocks(result?.blocks));
-          dispatch(setTableData(result?.tableData));
+          dispatch(setBlocks(result?.data?.blocks));
+          dispatch(setTableData(result?.data?.tableData));
         }
-        debugger;
 
         return result;
       } catch (error) {

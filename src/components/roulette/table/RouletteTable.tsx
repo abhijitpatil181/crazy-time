@@ -4,6 +4,7 @@ import Chip from "../chips/Chip";
 // import { Overlay, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import { RouletteTableProps } from "../../../types/roulette.type";
 import { Row } from "../../../types/row.type";
+import { store } from "../../../store/store";
 
 interface RouletteTableState {
   /* JSONS ROWS */
@@ -58,6 +59,7 @@ class RouletteTable extends React.Component<
     num: string | string[],
     whichRow: keyof RouletteTableState
   ): void => {
+    const currentSelectedBet = store.getState().bets.currentBet;
     //checking if my props.arr is empty, if it is, leave empty, if it is not, spread it
     const nums = this.props.arr.length === 0 ? [] : [...this.props.arr];
 
@@ -82,6 +84,7 @@ class RouletteTable extends React.Component<
       const updatedRow = row.map((chip) => {
         if (chip.n == num) {
           chip.visible = false;
+          chip.bet = 0; //removing bet from the selected number
         }
         return chip;
       });
@@ -107,6 +110,7 @@ class RouletteTable extends React.Component<
       const updatedRow = row.map((chip) => {
         if (chip.n == num) {
           chip.visible = true;
+          chip.bet = currentSelectedBet; //adding bet to the selected number
         }
         return chip;
       });
@@ -166,7 +170,7 @@ class RouletteTable extends React.Component<
                   disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "firstRow")}
                 >
-                  <Chip id={num.n} active={num.visible} />
+                  <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>
               ))}
             </ul>
@@ -202,7 +206,7 @@ class RouletteTable extends React.Component<
                   disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "secondRow")}
                 >
-                  <Chip id={num.n} active={num.visible} />
+                  <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>
               ))}
             </ul>

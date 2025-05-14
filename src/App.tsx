@@ -6,13 +6,14 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./apis/services";
+import useCoins from "./hooks/useCoins";
+import useBlocks from "./hooks/useBlocks";
 
 const { VITE_SERVER_BASE_IP } = import.meta.env;
 axios.defaults.baseURL = VITE_SERVER_BASE_IP;
 console.log("VITE_SERVER_BASE_IP", VITE_SERVER_BASE_IP);
 
 function App() {
-  // useBlocks();
   return (
     <>
       <Provider store={store}>

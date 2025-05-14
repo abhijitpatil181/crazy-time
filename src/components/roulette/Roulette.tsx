@@ -542,7 +542,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   arr={this.state.arr}
                 />
               </Col>
-                <Col className="mt-5" style={{ marginTop: "1.25rem" }}>
+              <Col className="mt-5" style={{ marginTop: "1.25rem" }}>
                 <RouletteTable
                   //ROWS//
                   firstRow={this.state.firstRow}
@@ -595,7 +595,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
                   </div>
                   </Col>
                 </Row> */}
-                </Col>
+              </Col>
             </Row>
           </Container>
           <Container fluid className="table">

@@ -1,9 +1,24 @@
 import { Row } from "../../types/row.type";
 
 export const secondRow: Row[] = [
-  { n: "7", className: "red cella chip-container-cella", visible: false },
-  { n: "8", className: "black cella chip-container-cella", visible: false },
-  { n: "9", className: "red cella chip-container-cella", visible: false },
+  {
+    n: "7",
+    className: "red cella chip-container-cella",
+    visible: false,
+    bet: 0,
+  },
+  {
+    n: "8",
+    className: "black cella chip-container-cella",
+    visible: false,
+    bet: 0,
+  },
+  {
+    n: "9",
+    className: "red cella chip-container-cella",
+    visible: false,
+    bet: 0,
+  },
   // { n: ["5", "8"], className: "bordo chip-container-bordo", visible: false },
   // { n: "8", className: "black cella chip-container-cella", visible: false },
   // { n: ["8", "11"], className: "bordo chip-container-bordo", visible: false },

@@ -1,6 +1,6 @@
 export type Row = {
-  n: string | string[];
+  n: string ;
   className: string;
-  visible?: boolean;
-  bet?: number;
+  visible: boolean;
+  bet: number;
 };

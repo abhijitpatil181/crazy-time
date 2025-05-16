@@ -9,9 +9,9 @@ interface ChipProps {
 }
 
 class Chip extends React.Component<ChipProps> {
-  componentDidUpdate() {
-    console.log("Chip props", this.props);
-  }
+  // componentDidUpdate() {
+  //   console.log("Chip props", this.props);
+  // }
   render(): JSX.Element {
     if (this.props.active) {
       return (

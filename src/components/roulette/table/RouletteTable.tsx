@@ -60,10 +60,7 @@ class RouletteTable extends React.Component<
   };
 
   //SELECTING BETS
-  numsSelectionHandler = (
-    num: string | string[],
-    whichRow: keyof RouletteTableState
-  ): void => {
+  numsSelectionHandler = (num: string | string[]): void => {
     const currentSelectedBet = store.getState().bets.currentBet;
     //checking if my props.arr is empty, if it is, leave empty, if it is not, spread it
     const selectedBets: SelectedBets[] = [...store.getState().bets.selctedBets];
@@ -205,9 +202,7 @@ class RouletteTable extends React.Component<
                     value={num.n}
                     onMouseEnter={this.disableTable}
                     disabled={store.getState().rouletterGame.disabled}
-                    onClick={() =>
-                      this.numsSelectionHandler(num.n, "tableBlocks")
-                    }
+                    onClick={() => this.numsSelectionHandler(num.n)}
                     //style={{ margin: "2px" }}
                   >
                     <Chip
@@ -232,7 +227,7 @@ class RouletteTable extends React.Component<
                   value={num.n}
                   onMouseEnter={this.disableTable}
                   disabled={store.getState().rouletterGame.disabled}
-                  onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
+                  onClick={() => this.numsSelectionHandler(num.n)}
                 >
                   <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>

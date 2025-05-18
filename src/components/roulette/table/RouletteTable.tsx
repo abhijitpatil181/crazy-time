@@ -8,16 +8,16 @@ import { store } from "../../../store/store";
 
 interface RouletteTableState {
   /* JSONS ROWS */
-  firstRow: Row[];
-  firstBorder: Row[];
-  secondRow: Row[];
-  secondBorder: Row[];
-  thirdRow: Row[];
-  thirdBorder: Row[];
+  // firstRow: Row[];
+  // firstBorder: Row[];
+  // secondRow: Row[];
+  // secondBorder: Row[];
+  // thirdRow: Row[];
+  // thirdBorder: Row[];
   fourthRow: Row[];
   // fifthRow: Row[];
-  columnLeft: Row[];
-  columnRight: Row[];
+  // columnLeft: Row[];
+  // columnRight: Row[];
   /* END JSONS ROWS */
   disabled: boolean;
   coins?: number;
@@ -32,19 +32,19 @@ class RouletteTable extends React.Component<
     super(props);
     this.state = {
       /* JSONS ROWS */
-      firstRow: this.props.firstRow,
-      firstBorder: this.props.firstBorder,
-      secondRow: this.props.secondRow,
-      secondBorder: this.props.secondBorder,
-      thirdRow: this.props.thirdRow,
-      thirdBorder: this.props.thirdBorder,
+      // firstRow: this.props.firstRow,
+      // firstBorder: this.props.firstBorder,
+      // secondRow: this.props.secondRow,
+      // secondBorder: this.props.secondBorder,
+      // thirdRow: this.props.thirdRow,
+      // thirdBorder: this.props.thirdBorder,
       fourthRow: this.props.fourthRow,
       // fifthRow: this.props.fifthRow,
-      columnLeft: this.props.columnLeft,
-      columnRight: this.props.columnRight,
+      // columnLeft: this.props.columnLeft,
+      // columnRight: this.props.columnRight,
       disabled: false,
+      tableBlocks: this.props.tableBlocks,
       /* END JSONS ROWS */
-      tableBlocks: store.getState().tableBlocks.tableBlocks,
     };
   }
 
@@ -83,6 +83,7 @@ class RouletteTable extends React.Component<
       coins = this.props.coins + this.props.chip;
 
       //tricky part: map each of the rows and check if chip is vivible, if it is, remove it
+
       const updatedRow = row.map((chip) => {
         if (chip.n == num) {
           // chip.visible = false; // remove the chip
@@ -91,6 +92,7 @@ class RouletteTable extends React.Component<
         }
         return chip;
       });
+      console.log("updatedRow", updatedRow);
 
       this.props.updateRow(whichRow, updatedRow); //passing back to Roulette.js component updated props
 
@@ -185,10 +187,16 @@ class RouletteTable extends React.Component<
                     value={num.n}
                     onMouseEnter={this.disableTable}
                     disabled={this.state.disabled}
-                    onClick={() => this.numsSelectionHandler(num.n, "tableBlocks")}
+                    onClick={() =>
+                      this.numsSelectionHandler(num.n, "tableBlocks")
+                    }
                     //style={{ margin: "2px" }}
                   >
-                    <Chip id={num.n} active={num.visible} currentBet={num.bet} />
+                    <Chip
+                      id={num.n}
+                      active={num.visible}
+                      currentBet={num.bet}
+                    />
                   </button>
                 </React.Fragment>
               ))}
@@ -208,7 +216,7 @@ class RouletteTable extends React.Component<
                   disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
-                  <Chip id={num.n} active={num.visible} currentBet={num.bet}/>
+                  <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>
               ))}
             </ul>

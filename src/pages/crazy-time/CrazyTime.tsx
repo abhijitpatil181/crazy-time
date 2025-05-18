@@ -10,22 +10,23 @@ const CrazyTime = () => {
   useCoins();
   useBlocks();
   const { blocks } = useAppSelector((state) => state.blocks);
-  const dispatch=useAppDispatch();
+  const { tableBlocks } = useAppSelector((state) => state.tableBlocks);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (blocks.length > 0) {
       const blocksData = getTableBlocks(blocks);
       dispatch(setTableBlocks(blocksData));
-     
     }
   }, [blocks]);
 
   return (
     <>
-      {blocks.length > 0 && (
+      {blocks.length > 0 && tableBlocks.length > 0 && (
         <div className="d-flex justify-content-center">
           <Roulette
             user={{ email: "patilabhijeet2652000@gmail.com", name: "ab" }}
+            tableBlocks={tableBlocks}
           />
         </div>
       )}

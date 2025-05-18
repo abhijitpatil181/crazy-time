@@ -40,16 +40,16 @@ export interface APIData {
 
 export interface RouletteTableProps {
   // Rows
-  firstRow: Row[];
-  firstBorder: Row[];
-  secondRow: Row[];
-  secondBorder: Row[];
-  thirdRow: Row[];
-  thirdBorder: Row[];
+  // firstRow: Row[];
+  // firstBorder: Row[];
+  // secondRow: Row[];
+  // secondBorder: Row[];
+  // thirdRow: Row[];
+  // thirdBorder: Row[];
   fourthRow: Row[];
-  fifthRow: Row[];
-  columnLeft: Row[];
-  columnRight: Row[];
+  // fifthRow: Row[];
+  // columnLeft: Row[];
+  // columnRight: Row[];
 
   // Functions
   updateRow: (row: string, val: Row[]) => void;
@@ -63,11 +63,13 @@ export interface RouletteTableProps {
   coins: number;
   chip: number;
   spinning: boolean;
+  tableBlocks: Row[];
 }
 
 // Props interface
 export interface RouletteProps {
   user: User;
+  tableBlocks: Row[];
 }
 
 // State interface
@@ -83,16 +85,17 @@ export interface RouletteState {
   message: string; // message
   extArr: string[]; // little trick: pushing number here if user win, so if it's empty, user loose
   // JSON rows
-  firstRow: Row[];
-  firstBorder: Row[];
-  secondRow: Row[];
-  secondBorder: Row[];
-  thirdRow: Row[];
-  thirdBorder: Row[];
+  // firstRow: Row[];
+  // firstBorder: Row[];
+  // secondRow: Row[];
+  // secondBorder: Row[];
+  // thirdRow: Row[];
+  // thirdBorder: Row[];
   fourthRow: Row[];
-  fifthRow: Row[];
-  columnLeft: Row[];
-  columnRight: Row[];
+  //  fifthRow: Row[];
+  // columnLeft: Row[];
+  // columnRight: Row[];
+  tableBlocks: Row[]; // table blocks
 }
 
 export interface Coin {

@@ -7,227 +7,13 @@ import { Container, Row, Col } from "react-bootstrap";
 // import API from "../../../utils/API";
 
 import { RouletteProps, RouletteState } from "../../types/roulette.type";
-import {
-  columnLeft,
-  columnRight,
-  fifthRow,
-  firstBorder,
-  firstRow,
-  fourthRow,
-  secondBorder,
-  secondRow,
-  thirdBorder,
-  thirdRow,
-} from "../../mock";
+
 import RouletteTable from "./table/RouletteTable";
 import { Row as RowType } from "../../types/row.type";
+import { fourthRow } from "../../mock";
 
 class Roulette extends React.Component<RouletteProps, RouletteState> {
   // Declaring combinations as class properties
-  private twoByOneFirst: string[] = [
-    "3",
-    "6",
-    "2",
-    "12",
-    "15",
-    "18",
-    "21",
-    "24",
-    "27",
-    "30",
-    "33",
-    "36",
-  ];
-  private twoByOneSecond: string[] = [
-    "2",
-    "5",
-    "8",
-    "11",
-    "14",
-    "17",
-    "20",
-    "23",
-    "26",
-    "29",
-    "32",
-    "35",
-  ];
-  private twoByOneThird: string[] = [
-    "1",
-    "4",
-    "7",
-    "10",
-    "13",
-    "16",
-    "19",
-    "22",
-    "25",
-    "28",
-    "31",
-    "34",
-  ];
-  private firstTwelves: string[] = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-  ];
-  private secondTwelves: string[] = [
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-  ];
-  private thirdTwelves: string[] = [
-    "25",
-    "26",
-    "27",
-    "28",
-    "29",
-    "30",
-    "31",
-    "32",
-    "33",
-    "34",
-    "35",
-    "36",
-  ];
-  private oneToEighteen: string[] = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-  ];
-  private nineteenToThirtySix: string[] = [
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-    "25",
-    "26",
-    "27",
-    "28",
-    "29",
-    "30",
-    "31",
-    "32",
-    "33",
-    "34",
-    "35",
-    "36",
-  ];
-  private black: string[] = [
-    "2",
-    "4",
-    "6",
-    "8",
-    "10",
-    "11",
-    "13",
-    "15",
-    "17",
-    "20",
-    "22",
-    "24",
-    "26",
-    "28",
-    "29",
-    "31",
-    "33",
-    "35",
-  ];
-  private red: string[] = [
-    "1",
-    "3",
-    "5",
-    "7",
-    "9",
-    "12",
-    "14",
-    "16",
-    "18",
-    "19",
-    "21",
-    "23",
-    "25",
-    "27",
-    "30",
-    "32",
-    "34",
-    "36",
-  ];
-  private even: string[] = [
-    "2",
-    "4",
-    "6",
-    "8",
-    "10",
-    "12",
-    "14",
-    "16",
-    "18",
-    "20",
-    "22",
-    "24",
-    "26",
-    "28",
-    "30",
-    "32",
-    "34",
-    "36",
-  ];
-  private odd: string[] = [
-    "1",
-    "3",
-    "5",
-    "7",
-    "9",
-    "11",
-    "13",
-    "15",
-    "17",
-    "19",
-    "21",
-    "23",
-    "25",
-    "27",
-    "29",
-    "31",
-    "33",
-    "35",
-  ];
 
   constructor(props: RouletteProps) {
     super(props);
@@ -243,16 +29,17 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       message: "Put your bets and spin the weel!", // message
       extArr: [], // little trick: pushing number here if user win, so if it's empty, user loose
       // JSON rows with TypeScript casting
-      firstRow: firstRow,
-      firstBorder: firstBorder,
-      secondRow: secondRow,
-      secondBorder: secondBorder,
-      thirdRow: thirdRow,
-      thirdBorder: thirdBorder,
+      // firstRow: firstRow,
+      // firstBorder: firstBorder,
+      // secondRow: secondRow,
+      // secondBorder: secondBorder,
+      // thirdRow: thirdRow,
+      // thirdBorder: thirdBorder,
       fourthRow: fourthRow,
-      fifthRow: fifthRow,
-      columnLeft: columnLeft,
-      columnRight: columnRight,
+      tableBlocks: this.props.tableBlocks,
+      // fifthRow: fifthRow,
+      // columnLeft: columnLeft,
+      // columnRight: columnRight,
     };
   }
 
@@ -268,6 +55,14 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
     //     });
     //   })
     //   .catch((err) => console.log(err));
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<RouletteProps>,
+    prevState: Readonly<RouletteState>,
+    snapshot?: any
+  ): void {
+    console.log("this.stae", this.state.tableBlocks);
   }
 
   isSpinning = (isspinning: boolean): void => {
@@ -339,45 +134,14 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       arr: [],
       spinning: false,
       num: "",
-      firstRow: this.state.firstRow.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      firstBorder: this.state.firstBorder.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      secondRow: this.state.secondRow.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      secondBorder: this.state.secondBorder.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      thirdRow: this.state.thirdRow.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      thirdBorder: this.state.thirdBorder.map((num) => {
-        num.visible = false;
-        return num;
-      }),
+
       fourthRow: this.state.fourthRow.map((num) => {
         num.visible = false;
         return num;
       }),
-      fifthRow: this.state.fifthRow.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      columnLeft: this.state.columnLeft.map((num) => {
-        num.visible = false;
-        return num;
-      }),
-      columnRight: this.state.columnRight.map((num) => {
-        num.visible = false;
-        return num;
+      tableBlocks: this.state.tableBlocks.map((num) => {
+        // num.visible = false;
+        return { ...num, visible: false, bet: 0 }; // create new object
       }),
     });
   };
@@ -545,17 +309,18 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
               <Col className="mt-5" style={{ marginTop: "1.25rem" }}>
                 <RouletteTable
                   //ROWS//
-                  firstRow={this.state.firstRow}
-                  firstBorder={this.state.firstBorder}
-                  secondRow={this.state.secondRow}
-                  secondBorder={this.state.secondBorder}
-                  thirdRow={this.state.thirdRow}
-                  thirdBorder={this.state.thirdBorder}
+                  // firstRow={this.state.firstRow}
+                  // firstBorder={this.state.firstBorder}
+                  // secondRow={this.state.secondRow}
+                  // secondBorder={this.state.secondBorder}
+                  // thirdRow={this.state.thirdRow}
+                  // thirdBorder={this.state.thirdBorder}
                   fourthRow={this.state.fourthRow}
-                  fifthRow={this.state.fifthRow}
-                  columnLeft={this.state.columnLeft}
-                  columnRight={this.state.columnRight}
+                  // fifthRow={this.state.fifthRow}
+                  // columnLeft={this.state.columnLeft}
+                  // columnRight={this.state.columnRight}
                   //END ROWS//
+                  tableBlocks={this.props.tableBlocks}
                   updateRow={this.updateRow}
                   updateArr={this.updateArr}
                   updateCoins={this.updateCoins}

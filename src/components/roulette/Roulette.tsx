@@ -11,6 +11,11 @@ import { RouletteProps, RouletteState } from "../../types/roulette.type";
 import RouletteTable from "./table/RouletteTable";
 import { Row as RowType } from "../../types/row.type";
 import { fourthRow } from "../../mock";
+import { store } from "../../store/store";
+import { setSpinning } from "../../store/slices/rouletteGame.slice";
+import { setSelectedBets } from "../../store/slices/bet.slice";
+import { setTableBlocks } from "../../store/slices/tableBlock.slice";
+import { setLowHeighBets } from "../../store/slices/bet.slice";
 
 class Roulette extends React.Component<RouletteProps, RouletteState> {
   // Declaring combinations as class properties
@@ -28,13 +33,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       spinning: false,
       message: "Put your bets and spin the weel!", // message
       extArr: [], // little trick: pushing number here if user win, so if it's empty, user loose
-      // JSON rows with TypeScript casting
-      // firstRow: firstRow,
-      // firstBorder: firstBorder,
-      // secondRow: secondRow,
-      // secondBorder: secondBorder,
-      // thirdRow: thirdRow,
-      // thirdBorder: thirdBorder,
+
       fourthRow: fourthRow,
       tableBlocks: this.props.tableBlocks,
       // fifthRow: fifthRow,
@@ -55,14 +54,6 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
     //     });
     //   })
     //   .catch((err) => console.log(err));
-  }
-
-  componentDidUpdate(
-    prevProps: Readonly<RouletteProps>,
-    prevState: Readonly<RouletteState>,
-    snapshot?: any
-  ): void {
-    console.log("this.stae", this.state.tableBlocks);
   }
 
   isSpinning = (isspinning: boolean): void => {
@@ -136,14 +127,32 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
       num: "",
 
       fourthRow: this.state.fourthRow.map((num) => {
-        num.visible = false;
-        return num;
+        return { ...num, visible: false, bet: 0 };
       }),
       tableBlocks: this.state.tableBlocks.map((num) => {
         // num.visible = false;
         return { ...num, visible: false, bet: 0 }; // create new object
       }),
     });
+    const updatedLowHeighBets = store
+      .getState()
+      .bets.lowHeighBets.map((bet) => ({
+        ...bet,
+        visible: false,
+        bet: 0,
+      }));
+
+    const updatedTableBlocks = store
+      .getState()
+      .tableBlocks.tableBlocks.map((num) => ({
+        ...num,
+        visible: false,
+        bet: 0,
+      }));
+    store.dispatch(setSpinning(false));
+    store.dispatch(setSelectedBets([]));
+    store.dispatch(setLowHeighBets(updatedLowHeighBets));
+    store.dispatch(setTableBlocks(updatedTableBlocks));
   };
 
   // finding out if winning number is in any of the arrays
@@ -300,11 +309,7 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
           <Container fluid className="table">
             <Row className="align-items-center justify-content-center ">
               <Col className="align-self-center mx-2">
-                <Weel
-                  isSpinning={this.isSpinning}
-                  updateNum={this.updateNum}
-                  arr={this.state.arr}
-                />
+                <Weel updateNum={this.updateNum} />
               </Col>
               <Col className="mt-5" style={{ marginTop: "1.25rem" }}>
                 <RouletteTable
@@ -366,7 +371,11 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
           <Container fluid className="table">
             <Row>
               <Col className="text-light-gold">
-                Your bets: {this.state.arr.join(", ")}
+                Bets :
+                {store
+                  .getState()
+                  .bets.selctedBets.map((bet) => bet.number)
+                  .join(", ")}
               </Col>
             </Row>
           </Container>

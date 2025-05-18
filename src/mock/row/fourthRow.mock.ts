@@ -5,6 +5,7 @@ export const fourthRow: Row[] = [
     n: "Low",
     className: "red cella-fourth chip-container-cella-fourth",
     visible: false,
+    bet: 0,
   },
   // { n: "", className: "space-fourth", disabled: true },
   // {
@@ -17,6 +18,7 @@ export const fourthRow: Row[] = [
     n: "High",
     className: "blues cella-fourth chip-container-cella-fourth",
     visible: false,
+    bet: 0,
   },
 ];
 

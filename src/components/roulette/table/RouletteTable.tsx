@@ -5,6 +5,9 @@ import Chip from "../chips/Chip";
 import { RouletteTableProps } from "../../../types/roulette.type";
 import { Row } from "../../../types/row.type";
 import { store } from "../../../store/store";
+import { setTableBlocks } from "../../../store/slices/tableBlock.slice";
+import { setDisabled } from "../../../store/slices/rouletteGame.slice";
+import { SelectedBets, setSelectedBets } from "../../../store/slices/bet.slice";
 
 interface RouletteTableState {
   /* JSONS ROWS */
@@ -49,10 +52,10 @@ class RouletteTable extends React.Component<
   }
 
   disableTable = (): void => {
-    if (this.props.spinning) {
-      this.setState({ disabled: true });
+    if (store.getState().rouletterGame.spinning) {
+      store.dispatch(setDisabled(true));
     } else {
-      this.setState({ disabled: false });
+      store.dispatch(setDisabled(false));
     }
   };
 
@@ -63,10 +66,10 @@ class RouletteTable extends React.Component<
   ): void => {
     const currentSelectedBet = store.getState().bets.currentBet;
     //checking if my props.arr is empty, if it is, leave empty, if it is not, spread it
-    const nums = this.props.arr.length === 0 ? [] : [...this.props.arr];
+    const selectedBets: SelectedBets[] = [...store.getState().bets.selctedBets];
 
     //saving in a variable the row from state with that name
-    const row = [...(this.state[whichRow] as Row[])];
+    const row = [...store.getState().tableBlocks.tableBlocks];
 
     //variable for coins
     let coins: number = this.props.coins;
@@ -75,12 +78,17 @@ class RouletteTable extends React.Component<
 
     /* BETS DESELECT HANDLING STARTS */
 
-    if (nums.indexOf(num) >= 0) {
+    if (selectedBets.findIndex((betNumber) => betNumber.number === num) >= 0) {
       //if number is present in array, deselect and remove it from array
-      nums.splice(nums.indexOf(num), 1);
+      // Remove all matching bets (in case there are duplicates)
+      for (let i = selectedBets.length - 1; i >= 0; i--) {
+        if (selectedBets[i].number === num) {
+          selectedBets.splice(i, 1);
+        }
+      }
 
       //giving back coins i bet on this number
-      coins = this.props.coins + this.props.chip;
+      coins = this.props.coins + currentSelectedBet;
 
       //tricky part: map each of the rows and check if chip is vivible, if it is, remove it
 
@@ -92,24 +100,31 @@ class RouletteTable extends React.Component<
         }
         return chip;
       });
-      console.log("updatedRow", updatedRow);
+      store.dispatch(setTableBlocks(updatedRow));
+      // console.log("updatedRow", updatedRow);
 
-      this.props.updateRow(whichRow, updatedRow); //passing back to Roulette.js component updated props
+      // this.props.updateRow(whichRow, updatedRow); //passing back to Roulette.js component updated props
 
-      this.setState({ [whichRow]: updatedRow } as unknown as Pick<
-        RouletteTableState,
-        keyof RouletteTableState
-      >); //setting the new state with removed chips from the rows
+      // this.setState({ [whichRow]: updatedRow } as unknown as Pick<
+      //   RouletteTableState,
+      //   keyof RouletteTableState
+      // >); //setting the new state with removed chips from the rows
 
       /* BETS DESELECT HANDLING ENDS */
 
       /* BETS SELECT HANDLING START */
-    } else if (nums.indexOf(num) === -1) {
+    } else if (
+      selectedBets.findIndex((betNumber) => betNumber.number === num) === -1
+    ) {
       //if number is NOT present in array, select it and put the chip on it
       //decrementing coins
-      coins = this.props.coins - this.props.chip;
+      coins = this.props.coins - currentSelectedBet;
 
-      nums.push(num); //adding selected number to the array of bets
+      selectedBets.push({
+        number: String(num),
+        betPlaced: currentSelectedBet,
+      }); //adding selected number to the array of bets
+      console.log("before ", row);
 
       //tricky part inverted: map each of the rows and check if chip is vivible, if it is NOT, add it
       const updatedRow = row.map((chip) => {
@@ -118,14 +133,17 @@ class RouletteTable extends React.Component<
         }
         return chip;
       });
-      this.setState({ [whichRow]: updatedRow } as unknown as Pick<
-        RouletteTableState,
-        keyof RouletteTableState
-      >); //setting the new state with added chips to the rows
+      console.log("after", updatedRow);
+      store.dispatch(setTableBlocks(updatedRow)); //passing back to Roulette.js component updated props
+      // this.setState({ [whichRow]: updatedRow } as unknown as Pick<
+      //   RouletteTableState,
+      //   keyof RouletteTableState
+      // >); //setting the new state with added chips to the rows
     }
 
     //passing back to Roulette.js the updated array
-    this.props.updateArr(nums);
+    // this.props.updateArr(nums);
+    store.dispatch(setSelectedBets(selectedBets)); //passing back to Roulette.js the updated array of selected bets
 
     //passing back to Roulette.js updated coins count
     this.setState({ coins: coins }, () => {
@@ -179,14 +197,14 @@ class RouletteTable extends React.Component<
 
             {/* Third row */}
             <ul className="d-flex flex-wrap list-unstyled">
-              {this.state.tableBlocks.map((num, index) => (
+              {store.getState().tableBlocks.tableBlocks.map((num, index) => (
                 <React.Fragment key={`${num.n}-${index}-tb`}>
                   {index % 7 === 0 && index !== 0 && <br />}
                   <button
                     className={num.className}
                     value={num.n}
                     onMouseEnter={this.disableTable}
-                    disabled={this.state.disabled}
+                    disabled={store.getState().rouletterGame.disabled}
                     onClick={() =>
                       this.numsSelectionHandler(num.n, "tableBlocks")
                     }
@@ -207,13 +225,13 @@ class RouletteTable extends React.Component<
               className="d-flex list-unstyled "
               style={{ paddingLeft: "0px" }}
             >
-              {this.state.fourthRow.map((num, index) => (
+              {store.getState().bets.lowHeighBets.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-for`}
                   className={num.className}
                   value={num.n}
                   onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
+                  disabled={store.getState().rouletterGame.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
                   <Chip id={num.n} active={num.visible} currentBet={num.bet} />

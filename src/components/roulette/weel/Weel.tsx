@@ -2,17 +2,13 @@ import React, { JSX } from "react";
 import { Button } from "react-bootstrap";
 import "./weel.css";
 import { WeelState } from "../../../types/weel.type";
-import { RootState } from "../../../store/store";
-import { connect } from "react-redux";
-
-import { Option } from "../../../types/option.type";
+import { setSpinning } from "../../../store/slices/rouletteGame.slice";
+import { store } from "../../../store/store";
 
 // Define interfaces for props and state
+
 interface WeelProps {
-  blocks: Option[];
   updateNum: (num: string) => void;
-  isSpinning: (spinning: boolean) => void;
-  arr: any[]; // Type can be more specific based on actual usage
 }
 
 class Weel extends React.Component<WeelProps, WeelState> {
@@ -24,15 +20,15 @@ class Weel extends React.Component<WeelProps, WeelState> {
     super(props);
     this.state = {
       spinAngleStart: Math.random() * 10 + 10,
-      spinTimeTotal: Math.random() * 3 + 4 * 1000,
+      spinTimeTotal: (Math.random() * 3 + 4) * 1000,
       startAngle: 0,
       spinTime: 0,
-      arc: Math.PI / (props.blocks.length / 2),
+      arc: Math.PI / (store.getState().blocks.blocks.length / 2),
       text: "",
     };
     this.spinTimer = null;
     this.baseSize = 200;
-    this.canvasRef = React.createRef<HTMLCanvasElement>(); // Initialize ref
+    this.canvasRef = React.createRef<HTMLCanvasElement>();
     this.handleOnClick = this.handleOnClick.bind(this);
     this.spin = this.spin.bind(this);
     this.rotate = this.rotate.bind(this);
@@ -43,6 +39,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
   }
 
   componentWillUnmount(): void {
+    console.log("componentWillUnmount");
     this.stopRotateWheel();
   }
 
@@ -62,9 +59,9 @@ class Weel extends React.Component<WeelProps, WeelState> {
       if (!ctx) return;
 
       ctx.font = "14px Helvetica, Arial";
-      for (let i = 0; i < this.props.blocks?.length; i++) {
+      for (let i = 0; i < store.getState().blocks.blocks.length; i++) {
         const angle = startAngle + i * arc;
-        ctx.fillStyle = this.props.blocks[i].blockColor;
+        ctx.fillStyle = store.getState().blocks.blocks[i].blockColor;
         ctx.beginPath();
         ctx.arc(baseSize, baseSize, outsideRadius, angle, angle + arc, false);
         ctx.arc(baseSize, baseSize, insideRadius, angle + arc, angle, true);
@@ -76,7 +73,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
           baseSize + Math.sin(angle + arc / 2) * textRadius
         );
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
-        const text = this.props.blocks[i].blockDisplayValue;
+        const text = store.getState().blocks.blocks[i].blockDisplayValue;
         ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
         ctx.restore();
       }
@@ -134,8 +131,14 @@ class Weel extends React.Component<WeelProps, WeelState> {
     const arcd = (arc * 180) / Math.PI;
     const index = Math.floor((360 - (degrees % 360)) / arcd);
     ctx.save();
-    const text = this.props.blocks[index].blockDisplayValue;
-    this.setState({ text });
+    const text = store.getState().blocks.blocks[index].blockDisplayValue;
+    console.log("setting text", text);
+    console.log("spiinning", store.getState().rouletterGame.spinning);
+    if (store.getState().rouletterGame.spinning) {
+      this.setState({ text });
+      store.dispatch(setSpinning(false));
+    }
+
     ctx.restore();
     this.props.updateNum(this.state.text);
   }
@@ -148,7 +151,9 @@ class Weel extends React.Component<WeelProps, WeelState> {
 
   handleOnClick(): void {
     this.spin();
-    this.props.isSpinning(true);
+    console.log("clicked");
+    store.dispatch(setSpinning(true));
+    // this.props.isSpinning(true);
   }
 
   SpinButton(): JSX.Element {
@@ -184,6 +189,8 @@ class Weel extends React.Component<WeelProps, WeelState> {
   };
 
   render(): JSX.Element {
+    console.log("renderNumber", this.state.text);
+
     return (
       <React.Fragment>
         <div className="roulette-container align-self-start">
@@ -193,7 +200,7 @@ class Weel extends React.Component<WeelProps, WeelState> {
             height={this.baseSize * 2}
             className="roulette-canvas"
           ></canvas>
-          {this.props.arr.length !== 0 ? (
+          {store.getState().bets.selctedBets.length !== 0 ? (
             <div className="d-grid gap-2">
               <Button
                 onClick={this.handleOnClick}
@@ -224,9 +231,4 @@ class Weel extends React.Component<WeelProps, WeelState> {
 // export default Weel;
 
 // Map Redux state to component props
-const mapStateToProps = (state: RootState) => ({
-  blocks: state.blocks.blocks, // Map blocks.blocks from Redux state to blocks prop
-});
-
-// Connect component to Redux
-export default connect(mapStateToProps)(Weel);
+export default Weel;

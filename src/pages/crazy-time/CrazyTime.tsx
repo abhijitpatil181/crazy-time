@@ -22,7 +22,7 @@ const CrazyTime = () => {
 
   return (
     <>
-      {blocks.length > 0 && tableBlocks.length > 0 && (
+      {tableBlocks.length > 0 && (
         <div className="d-flex justify-content-center">
           <Roulette
             user={{ email: "patilabhijeet2652000@gmail.com", name: "ab" }}

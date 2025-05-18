@@ -21,6 +21,7 @@ interface RouletteTableState {
   /* END JSONS ROWS */
   disabled: boolean;
   coins?: number;
+  tableBlocks: Row[];
 }
 
 class RouletteTable extends React.Component<
@@ -43,6 +44,7 @@ class RouletteTable extends React.Component<
       columnRight: this.props.columnRight,
       disabled: false,
       /* END JSONS ROWS */
+      tableBlocks: store.getState().tableBlocks.tableBlocks,
     };
   }
 
@@ -83,8 +85,9 @@ class RouletteTable extends React.Component<
       //tricky part: map each of the rows and check if chip is vivible, if it is, remove it
       const updatedRow = row.map((chip) => {
         if (chip.n == num) {
-          chip.visible = false;
-          chip.bet = 0; //removing bet from the selected number
+          // chip.visible = false; // remove the chip
+          // chip.bet = 0; // remove the bet
+          return { ...chip, visible: false, bet: 0 }; // create new object
         }
         return chip;
       });
@@ -109,12 +112,10 @@ class RouletteTable extends React.Component<
       //tricky part inverted: map each of the rows and check if chip is vivible, if it is NOT, add it
       const updatedRow = row.map((chip) => {
         if (chip.n == num) {
-          chip.visible = true;
-          chip.bet = currentSelectedBet; //adding bet to the selected number
+          return { ...chip, visible: true, bet: currentSelectedBet }; // create new object
         }
         return chip;
       });
-
       this.setState({ [whichRow]: updatedRow } as unknown as Pick<
         RouletteTableState,
         keyof RouletteTableState
@@ -136,31 +137,10 @@ class RouletteTable extends React.Component<
     return (
       <React.Fragment>
         <div className="d-flex flex-row align-items-center roulette-table hidden">
-          {/* <div className="align-self-start">
-            <ul className="list-unstyled pt-6">
-              {this.state.columnLeft.map((num, index, arr) => (
-                <li
-                  key={`${num.n}-${index}-cl`}
-                  className={num.className + " no-cursor"}
-                  data-value={num.n}
-                >
-                  <OverlayTrigger
-                    overlay={
-                      <Tooltip id={`tooltip-${num.n}`}>
-                        No bets on {num.n}!
-                      </Tooltip>
-                    }
-                  >
-                    <span className="d-inline-block">{num.n}</span>
-                  </OverlayTrigger>
-                </li>
-              ))}
-            </ul>
-          </div> */}
           <div className="align-self-start">
             <div className="table-divider"></div>
             {/* First row */}
-            <ul className="d-flex list-unstyled" style={{ paddingLeft: "0px" }}>
+            {/* <ul className="d-flex list-unstyled" style={{ paddingLeft: "0px" }}>
               {this.state.firstRow.map((num, index) => (
                 <button
                   key={`${num.n}-${index}-fr`}
@@ -173,26 +153,10 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>
               ))}
-            </ul>
-            {/* Between first and second rows borders */}
-            {/* <ul className="d-flex list-unstyled">
-              {this.state.firstBorder.map((num, index) => (
-                <button
-                  key={`${num.n}-${index}-fb`}
-                  className={num.className}
-                  value={num.n}
-                  onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
-                  onClick={() =>
-                    this.numsSelectionHandler(num.n, "firstBorder")
-                  }
-                >
-                  <Chip id={num.n} active={num.visible} />
-                </button>
-              ))}
             </ul> */}
+
             {/* Second row */}
-            <ul
+            {/* <ul
               className="d-flex justify-content-center list-unstyled"
               // style={{ paddingLeft: "110px" }}
               style={{ paddingLeft: "90px" }}
@@ -209,56 +173,27 @@ class RouletteTable extends React.Component<
                   <Chip id={num.n} active={num.visible} currentBet={num.bet} />
                 </button>
               ))}
-            </ul>
-            {/* Between second and third rows borders */}
-            {/* <ul className="d-flex list-unstyled">
-              {this.state.secondBorder.map((num, index) => (
-                <button
-                  key={`${num.n}-${index}-sb`}
-                  className={num.className}
-                  value={num.n}
-                  onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
-                  onClick={() =>
-                    this.numsSelectionHandler(num.n, "secondBorder")
-                  }
-                >
-                  <Chip id={num.n} active={num.visible} />
-                </button>
-              ))}
             </ul> */}
+
             {/* Third row */}
-            {/* <ul className="d-flex list-unstyled">
-              {this.state.thirdRow.map((num, index) => (
-                <button
-                  key={`${num.n}-${index}-tr`}
-                  className={num.className}
-                  value={num.n}
-                  onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
-                  onClick={() => this.numsSelectionHandler(num.n, "thirdRow")}
-                >
-                  <Chip id={num.n} active={num.visible} />
-                </button>
+            <ul className="d-flex flex-wrap list-unstyled">
+              {this.state.tableBlocks.map((num, index) => (
+                <React.Fragment key={`${num.n}-${index}-tb`}>
+                  {index % 7 === 0 && index !== 0 && <br />}
+                  <button
+                    className={num.className}
+                    value={num.n}
+                    onMouseEnter={this.disableTable}
+                    disabled={this.state.disabled}
+                    onClick={() => this.numsSelectionHandler(num.n, "tableBlocks")}
+                    //style={{ margin: "2px" }}
+                  >
+                    <Chip id={num.n} active={num.visible} currentBet={num.bet} />
+                  </button>
+                </React.Fragment>
               ))}
-            </ul> */}
-            {/* Between third rows borders */}
-            {/* <ul className="d-flex ">
-              {this.state.thirdBorder.map((num, index) => (
-                <button
-                  key={`${num.n}-${index}-tb`}
-                  className={num.className}
-                  value={num.n}
-                  onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
-                  onClick={() =>
-                    this.numsSelectionHandler(num.n, "thirdBorder")
-                  }
-                >
-                  <Chip id={num.n} active={num.visible} />
-                </button>
-              ))}
-            </ul> */}
+            </ul>
+
             {/* Fourth row */}
             <ul
               className="d-flex list-unstyled "
@@ -273,48 +208,12 @@ class RouletteTable extends React.Component<
                   disabled={this.state.disabled}
                   onClick={() => this.numsSelectionHandler(num.n, "fourthRow")}
                 >
-                  <Chip id={num.n} active={num.visible} />
+                  <Chip id={num.n} active={num.visible} currentBet={num.bet}/>
                 </button>
               ))}
             </ul>
-            <div className="table-divider"></div>
-            {/* Fifth row */}
-            {/* <ul className="d-flex list-unstyled">
-              {this.state.fifthRow.map((num, index) => (
-                <button
-                  key={`${num.n}-${index}-fif`}
-                  className={num.className}
-                  value={num.n}
-                  onMouseEnter={this.disableTable}
-                  disabled={this.state.disabled}
-                  onClick={() => this.numsSelectionHandler(num.n, "fifthRow")}
-                >
-                  <Chip id={num.n} active={num.visible} />
-                </button>
-              ))}
-            </ul> */}
             <div className="table-divider"></div>
           </div>
-          {/* <div className="align-self-start">
-            <div className="table-divider"></div>
-            <ul className="list-unstyled">
-              {this.state.columnRight.map((num, index) => (
-                <li className={num.className} key={`${num.n}-${index}-cr`}>
-                  <button
-                    className="blues"
-                    value={num.n}
-                    onMouseEnter={this.disableTable}
-                    disabled={this.state.disabled}
-                    onClick={() =>
-                      this.numsSelectionHandler(num.n, "columnRight")
-                    }
-                  >
-                    <Chip id={num.n} active={num.visible} />
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div> */}
         </div>
       </React.Fragment>
     );

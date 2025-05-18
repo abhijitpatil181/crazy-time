@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Row } from "../../types/row.type";
 import { fourthRow } from "../../mock";
-import { set } from "lodash";
 
 export interface SelectedBets {
   number: string;

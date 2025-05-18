@@ -213,69 +213,70 @@ class Roulette extends React.Component<RouletteProps, RouletteState> {
         this.determineValidBets(3, item, num, 11);
         this.determineValidBets(4, item, num, 8);
         this.determineValidBets(6, item, num, 5);
-        // otherwise it's a string (even, odd etc), so before mapping i have to check if the element name is in my array and then map that element
-      } else {
-        this.determineValidBetsColFive("Even", item, this.even, num, 1);
-        this.determineValidBetsColFive("Odd", item, this.odd, num, 1);
-        this.determineValidBetsColFive("Black", item, this.black, num, 1);
-        this.determineValidBetsColFive("Red", item, this.red, num, 1);
-        this.determineValidBetsColFive(
-          "1 to 18",
-          item,
-          this.oneToEighteen,
-          num,
-          1
-        );
-        this.determineValidBetsColFive(
-          "19 to 36",
-          item,
-          this.nineteenToThirtySix,
-          num,
-          1
-        );
-        this.determineValidBetsColFive(
-          "3rd 12",
-          item,
-          this.thirdTwelves,
-          num,
-          1
-        );
-        this.determineValidBetsColFive(
-          "2nd 12",
-          item,
-          this.secondTwelves,
-          num,
-          1
-        );
-        this.determineValidBetsColFive(
-          "1st 12",
-          item,
-          this.firstTwelves,
-          num,
-          1
-        );
-        this.determineValidBetsColFive(
-          "2:1:1",
-          item,
-          this.twoByOneFirst,
-          num,
-          2
-        );
-        this.determineValidBetsColFive(
-          "2:1:2",
-          item,
-          this.twoByOneSecond,
-          num,
-          2
-        );
-        this.determineValidBetsColFive(
-          "2:1:3",
-          item,
-          this.twoByOneThird,
-          num,
-          2
-        );
       }
+      // otherwise it's a string (even, odd etc), so before mapping i have to check if the element name is in my array and then map that element
+      // }else {
+      //   this.determineValidBetsColFive("Even", item, this.even, num, 1);
+      //   this.determineValidBetsColFive("Odd", item, this.odd, num, 1);
+      //   this.determineValidBetsColFive("Black", item, this.black, num, 1);
+      //   this.determineValidBetsColFive("Red", item, this.red, num, 1);
+      //   this.determineValidBetsColFive(
+      //     "1 to 18",
+      //     item,
+      //     this.oneToEighteen,
+      //     num,
+      //     1
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "19 to 36",
+      //     item,
+      //     this.nineteenToThirtySix,
+      //     num,
+      //     1
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "3rd 12",
+      //     item,
+      //     this.thirdTwelves,
+      //     num,
+      //     1
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "2nd 12",
+      //     item,
+      //     this.secondTwelves,
+      //     num,
+      //     1
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "1st 12",
+      //     item,
+      //     this.firstTwelves,
+      //     num,
+      //     1
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "2:1:1",
+      //     item,
+      //     this.twoByOneFirst,
+      //     num,
+      //     2
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "2:1:2",
+      //     item,
+      //     this.twoByOneSecond,
+      //     num,
+      //     2
+      //   );
+      //   this.determineValidBetsColFive(
+      //     "2:1:3",
+      //     item,
+      //     this.twoByOneThird,
+      //     num,
+      //     2
+      //   );
+      // }
     });
 
     // if there is nothing in existing numbers array, means user lost, firing the respective function
